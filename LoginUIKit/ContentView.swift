@@ -23,6 +23,11 @@ struct ContentView: View {
                         isKeyboardShowing = true
                     }
                 })
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification), perform: { _ in
+                    if !showSignup {
+                        isKeyboardShowing = false
+                    }
+                })
         } //: NavigationStack
         .overlay {
             if #available(iOS 17, *) {
@@ -41,10 +46,10 @@ struct ContentView: View {
     @ViewBuilder
     func CircleView() -> some View {
         Circle()
-            .fill(.linearGradient(colors: [.yellow, .orange, .red], startPoint: .top, endPoint: .bottom))
+            .fill(.linearGradient(colors: isKeyboardShowing ? [] : [.yellow, .orange, .red], startPoint: .top, endPoint: .bottom))
             .frame(width: 200, height: 200)
             /// que se mueva cuando la pagina se loadea
-            .offset(x: showSignup ? 90 : -90, y: -90 - (isKeyboardShowing ? 200 : 0))
+            .offset(x: showSignup ? 90 : -90, y: -90)
             .blur(radius: 15)
             .hSpacing(showSignup ? .trailing : .leading)
             .vSpacing(.top)

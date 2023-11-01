@@ -33,6 +33,7 @@ struct Login: View {
             VStack(spacing: 25) {
                 /// Se agrega CustomTextFields
                 CustomTextFields(sfIcon: "at", hint: "Email ID", value: $emailID)
+                    .autocapitalization(.none)
                 
                 CustomTextFields(sfIcon: "lock", hint: "Contraseña", isPassword: true, value: $password)
                     .padding(.top, 5)
