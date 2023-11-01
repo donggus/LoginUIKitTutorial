@@ -13,6 +13,9 @@ struct SignUp: View {
     @State private var fullName: String = ""
     @State private var password: String = ""
     
+    @State private var askOTP: Bool = false
+    @State private var otpText: String = ""
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15, content: {
             Button(action: {
@@ -46,7 +49,7 @@ struct SignUp: View {
                     .padding(.top, 5)
                 
                 GradientButton(title: "Continuar", icon: "arrow.right") {
-                    
+                    askOTP.toggle()
                 }
                 .hSpacing(.trailing)
                 .disableWithOpacity(emailID.isEmpty || password.isEmpty || fullName.isEmpty)
@@ -72,6 +75,18 @@ struct SignUp: View {
         .padding(.vertical, 15)
         .padding(.horizontal, 25)
         .toolbar(.hidden, for: .navigationBar)
+        /// OTP Prompt
+        .sheet(isPresented: $askOTP, content: {
+            if #available(iOS 16.4, *) {
+                /// Debido a que quiero un Custom Sheet Radius
+                OTPView(otpText: $otpText)
+                    .presentationDetents([.height(300)])
+                    .presentationCornerRadius(30)
+            } else {
+                OTPView(otpText: $otpText)
+                    .presentationDetents([.height(300)])
+            }
+        })
         
     }
 }

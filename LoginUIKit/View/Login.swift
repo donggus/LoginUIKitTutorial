@@ -13,6 +13,8 @@ struct Login: View {
     @State private var password: String = ""
     @State private var showForgotPasswordView: Bool = false
     @State private var showResetView: Bool = false
+    @State private var askOTP: Bool = false
+    @State private var otpText: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15, content: {
@@ -44,7 +46,7 @@ struct Login: View {
                 .hSpacing(.trailing)
                 
                 GradientButton(title: "Ingresar", icon: "arrow.right") {
-                    
+                    askOTP.toggle()
                 }
                 .hSpacing(.trailing)
                 .disableWithOpacity(emailID.isEmpty || password.isEmpty)
@@ -70,6 +72,7 @@ struct Login: View {
         .padding(.vertical, 15)
         .padding(.horizontal, 25)
         .toolbar(.hidden, for: .navigationBar)
+        /// Preguntar po email para enviar link de reinicio
         .sheet(isPresented: $showForgotPasswordView, content: {
             if #available(iOS 16.4, *) {
                 /// Debido a que quiero un Custom Sheet Radius
@@ -81,7 +84,30 @@ struct Login: View {
                     .presentationDetents([.height(300)])
             }
         })
-        
+        /// Reiniciarndo nueva contraseña
+        .sheet(isPresented: $showResetView, content: {
+            if #available(iOS 16.4, *) {
+                /// Debido a que quiero un Custom Sheet Radius
+                PasswordReset()
+                    .presentationDetents([.height(300)])
+                    .presentationCornerRadius(30)
+            } else {
+                PasswordReset()
+                    .presentationDetents([.height(300)])
+            }
+        })
+        /// OTP Prompt
+        .sheet(isPresented: $askOTP, content: {
+            if #available(iOS 16.4, *) {
+                /// Debido a que quiero un Custom Sheet Radius
+                OTPView(otpText: $otpText)
+                    .presentationDetents([.height(300)])
+                    .presentationCornerRadius(30)
+            } else {
+                OTPView(otpText: $otpText)
+                    .presentationDetents([.height(300)])
+            }
+        })
     }
 }
 
