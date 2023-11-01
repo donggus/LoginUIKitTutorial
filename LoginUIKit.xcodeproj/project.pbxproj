@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4331D0A02AF195AA00ADAA34 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331D09F2AF195AA00ADAA34 /* SignUp.swift */; };
+		4331D0A22AF1B84800ADAA34 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331D0A12AF1B84800ADAA34 /* ForgotPassword.swift */; };
 		43AE01A82AD7809A00052F70 /* LoginUIKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE01A72AD7809A00052F70 /* LoginUIKitApp.swift */; };
 		43AE01AA2AD7809A00052F70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE01A92AD7809A00052F70 /* ContentView.swift */; };
 		43AE01AC2AD7809B00052F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE01AB2AD7809B00052F70 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4331D09F2AF195AA00ADAA34 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		4331D0A12AF1B84800ADAA34 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		43AE01A42AD7809A00052F70 /* LoginUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE01A72AD7809A00052F70 /* LoginUIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIKitApp.swift; sourceTree = "<group>"; };
 		43AE01A92AD7809A00052F70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				43AE01B62AD780EC00052F70 /* Login.swift */,
 				43AE01BB2AD783DC00052F70 /* CustomTextFields.swift */,
 				43AE01BD2AD787AB00052F70 /* GradientButton.swift */,
+				4331D09F2AF195AA00ADAA34 /* SignUp.swift */,
+				4331D0A12AF1B84800ADAA34 /* ForgotPassword.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,8 +171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4331D0A02AF195AA00ADAA34 /* SignUp.swift in Sources */,
 				43AE01B72AD780EC00052F70 /* Login.swift in Sources */,
 				43AE01BE2AD787AB00052F70 /* GradientButton.swift in Sources */,
+				4331D0A22AF1B84800ADAA34 /* ForgotPassword.swift in Sources */,
 				43AE01BC2AD783DC00052F70 /* CustomTextFields.swift in Sources */,
 				43AE01AA2AD7809A00052F70 /* ContentView.swift in Sources */,
 				43AE01BA2AD781FB00052F70 /* ViewExtensions.swift in Sources */,

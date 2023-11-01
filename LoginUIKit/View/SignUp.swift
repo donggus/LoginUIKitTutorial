@@ -1,28 +1,35 @@
 //
-//  Login.swift
+//  SignUp.swift
 //  LoginUIKit
 //
-//  Created by Gustavo Dong on 11/10/2023.
+//  Created by Gustavo Dong on 31/10/2023.
 //
 
 import SwiftUI
 
-struct Login: View {
+struct SignUp: View {
     @Binding var showSignup: Bool
     @State private var emailID: String = ""
+    @State private var fullName: String = ""
     @State private var password: String = ""
-    @State private var showForgotPasswordView: Bool = false
-    @State private var showResetView: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15, content: {
-            Spacer(minLength: 0)
+            Button(action: {
+                showSignup = false
+            }, label: {
+                Image(systemName: "arrow.left")
+                    .font(.title2)
+                    .foregroundStyle(.gray)
+            })
+            .padding(.top, 10)
             
-            Text("Ingreso")
+            Text("Registrarse")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 25)
             
-            Text("Por favor ingresa para continuar")
+            Text("Por favor regístrate para continuar")
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundStyle(.gray)
@@ -32,22 +39,17 @@ struct Login: View {
                 /// Se agrega CustomTextFields
                 CustomTextFields(sfIcon: "at", hint: "Email ID", value: $emailID)
                 
+                CustomTextFields(sfIcon: "person", hint: "Nombre completo", value: $fullName)
+                    .padding(.top, 5)
+                
                 CustomTextFields(sfIcon: "lock", hint: "Contraseña", isPassword: true, value: $password)
                     .padding(.top, 5)
-
-                Button("¿Olvidaste la contraseña?") {
-                    showForgotPasswordView.toggle()
-                }
-                .font(.callout)
-                .fontWeight(.heavy)
-                .tint(.orange)
-                .hSpacing(.trailing)
                 
-                GradientButton(title: "Ingresar", icon: "arrow.right") {
+                GradientButton(title: "Continuar", icon: "arrow.right") {
                     
                 }
                 .hSpacing(.trailing)
-                .disableWithOpacity(emailID.isEmpty || password.isEmpty)
+                .disableWithOpacity(emailID.isEmpty || password.isEmpty || fullName.isEmpty)
                 
             } //: VStack
             .padding(.top, 20)
@@ -55,10 +57,10 @@ struct Login: View {
             Spacer(minLength: 0)
             
             HStack(spacing: 6) {
-                Text("¿No estás registrado?")
+                Text("¿Ya estás registrado?")
                 
-                Button("Registrarse") {
-                    showSignup.toggle()
+                Button("Ingresar") {
+                    showSignup = false
                 }
                 .fontWeight(.bold)
                 .tint(.orange)
@@ -70,17 +72,6 @@ struct Login: View {
         .padding(.vertical, 15)
         .padding(.horizontal, 25)
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(isPresented: $showForgotPasswordView, content: {
-            if #available(iOS 16.4, *) {
-                /// Debido a que quiero un Custom Sheet Radius
-                ForgotPassword(showResetView: $showResetView)
-                    .presentationDetents([.height(300)])
-                    .presentationCornerRadius(30)
-            } else {
-                ForgotPassword(showResetView: $showResetView)
-                    .presentationDetents([.height(300)])
-            }
-        })
         
     }
 }
